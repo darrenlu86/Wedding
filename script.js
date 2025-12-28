@@ -8,27 +8,62 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressPercent = document.getElementById('progress-percent');
     const envelope = document.getElementById('envelope');
 
-    // ===== Loading 進度動畫 =====
-    let progress = 0;
-    const loadingInterval = setInterval(() => {
-        progress += Math.random() * 15;
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(loadingInterval);
-            
-            // 載入完成後延遲顯示信封畫面
+    // ===== 真實圖片預載入 =====
+    const imagesToPreload = [
+        'src/couple-illustration.svg',
+        'src/10yAgo.jpg',
+        'src/10yNow.jpg',
+        'src/Date.jpg',
+        'src/Hero.jpg',
+        'src/Married.jpg',
+        'src/Meet.jpg',
+        'src/Proposal.jpg',
+        'src/R2016.jpg',
+        'src/R2017.jpg',
+        'src/R2018.jpg',
+        'src/R2019.jpg',
+        'src/R2020.jpg',
+        'src/R2021.jpg',
+        'src/R2022.jpg',
+        'src/R2023.jpg',
+        'src/R2024.jpg',
+        'src/R2025.jpg',
+        'src/Rnow.jpg'
+    ];
+
+    let loadedCount = 0;
+    const totalImages = imagesToPreload.length;
+
+    function updateProgress() {
+        const progress = Math.floor((loadedCount / totalImages) * 100);
+        progressBar.style.width = progress + '%';
+        progressPercent.textContent = progress + '%';
+
+        if (loadedCount === totalImages) {
+            // 所有圖片載入完成後延遲顯示信封畫面
             setTimeout(() => {
                 loadingScreen.style.opacity = '0';
                 setTimeout(() => {
                     loadingScreen.style.display = 'none';
                     envelopeScreen.classList.remove('hidden');
                 }, 500);
-            }, 800);
+            }, 300);
         }
-        
-        progressBar.style.width = progress + '%';
-        progressPercent.textContent = Math.floor(progress) + '%';
-    }, 200);
+    }
+
+    // 預載入所有圖片
+    imagesToPreload.forEach(src => {
+        const img = new Image();
+        img.onload = () => {
+            loadedCount++;
+            updateProgress();
+        };
+        img.onerror = () => {
+            loadedCount++;
+            updateProgress();
+        };
+        img.src = src;
+    });
 
     // ===== 信封點擊事件 =====
     envelope.addEventListener('click', function() {
