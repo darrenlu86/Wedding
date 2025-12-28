@@ -282,6 +282,7 @@ body {
 /* Hero Section */
 .hero-section {
     position: relative;
+    width: 100%;
     height: 100vh;
     background: linear-gradient(rgba(255, 173, 210, 0.25), rgba(255, 193, 224, 0.25)),
                 url('src/Hero.jpg');
@@ -697,8 +698,9 @@ body {
 
 .year-badge {
     position: absolute;
-    top: 30px;
-    left: 40px;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 245, 249, 0.98));
     color: var(--accent-pink);
     padding: 12px 24px;
@@ -715,6 +717,7 @@ body {
     width: 100%;
     aspect-ratio: 4/5;
     object-fit: cover;
+    object-position: center 35%;
     border-radius: 24px;
     box-shadow: 0 15px 50px rgba(255, 133, 179, 0.2);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -781,11 +784,11 @@ body {
 }
 
 .carousel-prev {
-    left: -70px;
+    left: 20px;
 }
 
 .carousel-next {
-    right: -70px;
+    right: 20px;
 }
 
 .carousel-dots {
@@ -880,6 +883,7 @@ body {
     width: 100%;
     aspect-ratio: 3/4;
     object-fit: cover;
+    object-position: center 35%;
     border-radius: 12px;
     margin-bottom: 15px;
     flex-shrink: 0;
@@ -1170,7 +1174,35 @@ body {
 }
 
 /* ===== Responsive ===== */
+.mobile-break {
+    display: none;
+}
+
 @media (max-width: 768px) {
+    .mobile-break {
+        display: inline;
+    }
+
+    .hero-section {
+        background-attachment: scroll;
+        width: 100vw;
+        max-width: 100%;
+        background-position: center 30%;
+    }
+
+    .hero-content {
+        padding: 0 20px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .hero-subtitle-initial {
+        font-size: 1.3rem;
+        padding: 0 10px;
+        max-width: 100%;
+    }
+
     .hero-title {
         font-size: 2rem;
     }
@@ -1195,11 +1227,13 @@ body {
     /* Image Comparison 響應式 */
     .image-comparison-slider {
         aspect-ratio: 3/4;
+        min-height: 400px;
     }
 
     .image-comparison-before img,
     .image-comparison-after img {
-        object-position: center center;
+        object-position: center 35%;
+        object-fit: cover;
     }
 
     .image-label {
