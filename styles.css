@@ -1,0 +1,1218 @@
+/* 字體引入 */
+@font-face {
+    font-family: 'jf-openhuninn';
+    src: url('src/fonts/jf-openhuninn-2.1.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* 全域設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-pink: #ffc1e0;
+    --secondary-pink: #ffadd2;
+    --light-pink: #fff5f9;
+    --deep-pink: #ff85b3;
+    --accent-pink: #ff6b9d;
+    --soft-pink: #ffe4f0;
+    --gold: #d4a574;
+    --text-dark: #2d2d2d;
+    --text-gray: #6b6b6b;
+    --text-light: #8a8a8a;
+}
+
+body {
+    font-family: 'jf-openhuninn', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    overflow-x: hidden;
+    background: #f5f5f5;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ===== Loading 畫面 ===== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #fff5f9 0%, #ffe4f0 50%, #ffd9ea 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loading-content {
+    text-align: center;
+    animation: fadeInUp 0.8s ease;
+}
+
+.couple-illustration {
+    margin-bottom: 30px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.couple-names {
+    font-size: 2.5rem;
+    color: var(--deep-pink);
+    margin: 20px 0 10px;
+    font-weight: 400;
+    letter-spacing: 4px;
+}
+
+.loading-text {
+    color: var(--text-gray);
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
+.progress-container {
+    width: 300px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--secondary-pink), var(--primary-pink));
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.progress-percent {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: var(--deep-pink);
+    font-weight: 500;
+}
+
+/* ===== 信封畫面 ===== */
+.envelope-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #fff5f9 0%, #ffe4f0 50%, #ffd9ea 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9998;
+    animation: fadeIn 0.5s ease;
+}
+
+.envelope-title {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.envelope-subtitle {
+    font-size: 1rem;
+    color: var(--text-gray);
+    margin-bottom: 50px;
+}
+
+.envelope-container {
+    position: relative;
+    width: 350px;
+    height: 240px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    perspective: 1000px;
+}
+
+.envelope-container:hover {
+    transform: scale(1.03);
+}
+
+.envelope-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fff 0%, var(--soft-pink) 100%);
+    border-radius: 12px;
+    box-shadow: 0 15px 45px rgba(255, 133, 179, 0.2);
+}
+
+.envelope-front {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+    background: linear-gradient(135deg, #fff 0%, #fff5f9 100%);
+    border-radius: 0 0 12px 12px;
+    box-shadow: inset 0 2px 4px rgba(255, 133, 179, 0.1);
+}
+
+.envelope-flap {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    top: 0;
+    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--secondary-pink) 100%);
+    border-radius: 12px 12px 0 0;
+    transform-origin: top center;
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    z-index: 3;
+    box-shadow: 0 5px 20px rgba(255, 133, 179, 0.3);
+    overflow: visible;
+}
+
+.flap-sticker {
+    position: absolute;
+    left: 50%;
+    bottom: -60px;
+    transform: translateX(-50%);
+    width: 120px;
+    height: auto;
+    filter: drop-shadow(0 4px 10px rgba(255, 133, 179, 0.4));
+    animation: gentleBounce 2s ease-in-out infinite;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+@keyframes gentleBounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-5px) scale(1.02);
+    }
+}
+
+.envelope-container.opening .envelope-flap {
+    transform: rotateX(-180deg);
+}
+
+.envelope-container.opening .flap-sticker {
+    opacity: 0;
+}
+
+.envelope-letter {
+    position: absolute;
+    width: 90%;
+    height: 85%;
+    top: 7.5%;
+    left: 5%;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(255, 133, 179, 0.2);
+    z-index: 1;
+    transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s,
+                z-index 0s 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.envelope-letter img {
+    width: 150px;
+    height: auto;
+    opacity: 0;
+    transform: scale(0.9);
+    filter: drop-shadow(0 4px 15px rgba(255, 133, 179, 0.3));
+    transition: opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s;
+}
+
+.envelope-container.opening .envelope-letter {
+    transform: translateY(-120%);
+    z-index: 4;
+}
+
+.envelope-container.opening .envelope-letter img {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ===== 主內容 ===== */
+.main-content {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    background: linear-gradient(rgba(255, 173, 210, 0.25), rgba(255, 193, 224, 0.25)),
+                url('src/Hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 107, 157, 0.2);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    animation: fadeInUp 1s ease 0.5s backwards;
+}
+
+.anniversary-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 30px;
+    box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.badge-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--deep-pink);
+    line-height: 1;
+}
+
+.badge-text {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    letter-spacing: 1px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: 8px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.couple-full-names {
+    font-size: 2.5rem;
+    margin: 30px 0;
+    letter-spacing: 6px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.separator {
+    margin: 0 20px;
+    opacity: 0.9;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin: 20px 0 40px;
+    letter-spacing: 3px;
+    opacity: 0.95;
+}
+
+.wedding-dates {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.date-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.date-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    letter-spacing: 2px;
+}
+
+.date-value {
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+.date-divider {
+    font-size: 2rem;
+    opacity: 0.7;
+}
+
+.skip-to-info-btn {
+    margin-top: 40px;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 245, 249, 0.95));
+    color: var(--accent-pink);
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(255, 133, 179, 0.3);
+    backdrop-filter: blur(10px);
+    font-family: 'jf-openhuninn', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+}
+
+.skip-to-info-btn:hover {
+    background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(255, 133, 179, 0.4);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    cursor: pointer;
+}
+
+/* ===== 對比照區塊 ===== */
+.comparison-section {
+    padding: 120px 20px;
+    background: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+    font-weight: 300;
+    letter-spacing: 4px;
+    position: relative;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 80px;
+    font-style: italic;
+    letter-spacing: 2px;
+    font-weight: 300;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--secondary-pink), var(--primary-pink));
+    margin: 25px auto 0;
+    border-radius: 1px;
+}
+
+/* Image Comparison Slider */
+.image-comparison-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.image-comparison-slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    max-height: 70vh;
+    overflow: hidden;
+    border-radius: 24px;
+    box-shadow: 0 30px 80px rgba(255, 133, 179, 0.2);
+    user-select: none;
+    cursor: ew-resize;
+}
+
+.image-comparison-before,
+.image-comparison-after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.image-comparison-before img,
+.image-comparison-after img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.image-comparison-before img {
+    object-position: center 30%;
+}
+
+.image-comparison-after img {
+    object-position: center 50%;
+}
+
+.image-comparison-after {
+    clip-path: inset(0 0 0 50%);
+}
+
+/* 圖片標籤 */
+.image-label {
+    position: absolute;
+    padding: 15px 25px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 245, 249, 0.95));
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 2;
+}
+
+.image-label-before {
+    bottom: 30px;
+    left: 30px;
+}
+
+.image-label-after {
+    bottom: 30px;
+    right: 30px;
+}
+
+.label-year {
+    font-size: 1.8rem;
+    color: var(--accent-pink);
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.label-desc {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    letter-spacing: 0.5px;
+}
+
+/* 滑桿控制 */
+.image-comparison-handle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: transparent;
+    transform: translateX(-50%);
+    z-index: 3;
+    cursor: ew-resize;
+}
+
+.handle-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 3px;
+    height: 100%;
+    background: white;
+    transform: translateX(-50%);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.handle-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--secondary-pink), var(--primary-pink));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(255, 133, 179, 0.4);
+    transition: transform 0.2s ease;
+}
+
+.image-comparison-handle:hover .handle-circle {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.handle-circle svg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* 提示文字 */
+.comparison-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    animation: fadeInUp 1s ease 1s backwards;
+}
+
+.comparison-hint svg {
+    color: var(--accent-pink);
+    animation: slideHorizontal 2s ease-in-out infinite;
+}
+
+@keyframes slideHorizontal {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+}
+
+/* ===== 輪播區塊 ===== */
+.gallery-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #fff 0%, var(--light-pink) 100%);
+}
+
+.gallery-carousel {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.carousel-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.carousel-slide {
+    flex: 0 0 auto;
+    width: 450px;
+    position: relative;
+    scroll-snap-align: start;
+}
+
+.year-badge {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 245, 249, 0.98));
+    color: var(--accent-pink);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    z-index: 2;
+    box-shadow: 0 4px 20px rgba(255, 133, 179, 0.2);
+    backdrop-filter: blur(10px);
+    letter-spacing: 1px;
+}
+
+.slide-image {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: 24px;
+    box-shadow: 0 15px 50px rgba(255, 133, 179, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-image:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 70px rgba(255, 133, 179, 0.3);
+}
+
+.slide-placeholder {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, #fff 0%, var(--soft-pink) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-light);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(255, 133, 179, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-placeholder:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 70px rgba(255, 133, 179, 0.3);
+}
+
+.slide-placeholder p:first-child {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.carousel-btn {
+    display: none;
+}
+
+.carousel-dots {
+    display: none;
+}
+
+.carousel-scroll-hint {
+    text-align: center;
+    margin-top: 30px;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.carousel-scroll-hint svg {
+    color: var(--accent-pink);
+    animation: slideHorizontal 2s ease-in-out infinite;
+}
+
+/* ===== 故事時間軸 ===== */
+.story-section {
+    padding: 120px 20px;
+    background: linear-gradient(135deg, var(--light-pink) 0%, #fff 100%);
+}
+
+.timeline {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    gap: 30px;
+    padding: 40px 20px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-pink), transparent);
+}
+
+.timeline-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.timeline-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--secondary-pink), var(--primary-pink));
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    z-index: 2;
+    box-shadow: 0 8px 25px rgba(255, 133, 179, 0.3);
+    border: 4px solid white;
+    margin-bottom: 30px;
+    flex-shrink: 0;
+}
+
+.timeline-content {
+    width: 100%;
+    height: 100%;
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(255, 133, 179, 0.12);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(255, 133, 179, 0.18);
+}
+
+.timeline-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+}
+
+.timeline-content h3 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    color: var(--accent-pink);
+    font-weight: 400;
+    letter-spacing: 2px;
+    flex-shrink: 0;
+}
+
+.timeline-desc {
+    color: var(--text-gray);
+    line-height: 1.8;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.timeline-year {
+    color: var(--primary-pink);
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin-top: auto;  /* 將年份推到底部 */
+}
+
+/* ===== 雙場地資訊 ===== */
+.venues-section {
+    padding: 120px 20px;
+    background: white;
+}
+
+.venues-note {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 60px;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+.venues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.venue-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(255, 133, 179, 0.15);
+    transition: all 0.3s ease;
+}
+
+.venue-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 80px rgba(255, 133, 179, 0.22);
+}
+
+.venue-header {
+    padding: 35px;
+    background: linear-gradient(135deg, var(--secondary-pink), var(--primary-pink));
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.venue-header-left {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+}
+
+.venue-city {
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+
+.venue-header-date {
+    font-size: 1.3rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    opacity: 0.95;
+}
+
+.venue-icon {
+    font-size: 2.8rem;
+}
+
+.venue-body {
+    padding: 45px;
+}
+
+.venue-date {
+    text-align: center;
+    padding: 25px;
+    background: linear-gradient(135deg, var(--light-pink) 0%, #fff 100%);
+    border-radius: 16px;
+    margin-bottom: 35px;
+}
+
+.date-number {
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--accent-pink);
+    line-height: 1;
+}
+
+.date-month {
+    font-size: 1.4rem;
+    color: var(--text-gray);
+    letter-spacing: 3px;
+    margin-top: 8px;
+    font-weight: 300;
+}
+
+.date-year {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-top: 5px;
+}
+
+.venue-info h3 {
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.venue-hall {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    letter-spacing: 0.5px;
+}
+
+.venue-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+    color: var(--text-gray);
+    line-height: 1.7;
+    letter-spacing: 0.3px;
+}
+
+.detail-icon {
+    font-size: 1.2rem;
+    min-width: 25px;
+}
+
+.venue-actions {
+    margin-top: 35px;
+}
+
+.linebot-btn {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #06c755, #00b900);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+}
+
+.linebot-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(6, 199, 85, 0.35);
+}
+
+.qrcode-container {
+    text-align: center;
+    padding: 25px;
+    background: var(--light-pink);
+    border-radius: 16px;
+}
+
+.qrcode-container img {
+    width: 160px;
+    height: 160px;
+    border-radius: 12px;
+    background: white;
+    padding: 12px;
+}
+
+.qrcode-container p {
+    margin-top: 12px;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+/* ===== Footer ===== */
+.footer {
+    padding: 100px 20px 50px;
+    background: linear-gradient(135deg, var(--light-pink) 0%, var(--soft-pink) 100%);
+    color: var(--text-dark);
+    text-align: center;
+}
+
+.footer-illustration {
+    margin-bottom: 35px;
+}
+
+.footer-main {
+    font-size: 1.4rem;
+    margin: 25px 0;
+    letter-spacing: 2px;
+    color: var(--text-gray);
+    font-weight: 300;
+}
+
+.footer-names {
+    font-size: 2rem;
+    margin: 20px 0;
+    color: var(--accent-pink);
+    letter-spacing: 4px;
+    font-weight: 400;
+}
+
+.footer-small {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-top: 25px;
+    letter-spacing: 1px;
+    color: var(--text-light);
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .couple-full-names {
+        font-size: 1.8rem;
+    }
+
+    .wedding-dates {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .date-divider {
+        transform: rotate(90deg);
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    /* Image Comparison 響應式 */
+    .image-comparison-slider {
+        aspect-ratio: 3/4;
+    }
+
+    .image-comparison-before img,
+    .image-comparison-after img {
+        object-position: center center;
+    }
+
+    .image-label {
+        padding: 10px 15px;
+    }
+
+    .image-label-before,
+    .image-label-after {
+        bottom: 15px;
+        left: 15px;
+        right: auto;
+    }
+
+    .image-label-after {
+        left: auto;
+        right: 15px;
+    }
+
+    .label-year {
+        font-size: 1.3rem;
+    }
+
+    .label-desc {
+        font-size: 0.85rem;
+    }
+
+    .handle-circle {
+        width: 50px;
+        height: 50px;
+    }
+
+    .handle-circle svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .comparison-hint {
+        font-size: 0.85rem;
+    }
+
+    /* 輪播卡片響應式 */
+    .carousel-slide {
+        width: 280px;
+    }
+
+    .slide-image {
+        aspect-ratio: 3/4;
+    }
+
+    .slide-placeholder {
+        aspect-ratio: 3/4;
+    }
+
+    .carousel-scroll-hint {
+        font-size: 0.85rem;
+    }
+
+    /* 時間軸改為垂直布局 */
+    .timeline {
+        flex-direction: column;
+        gap: 40px;
+        padding: 20px;
+    }
+
+    .timeline::before {
+        left: 30px;
+        right: auto;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        height: auto;
+        background: linear-gradient(180deg, transparent, var(--primary-pink), transparent);
+    }
+
+    .timeline-item {
+        flex-direction: row;
+        align-items: flex-start;
+        padding-left: 80px;
+        width: 100%;
+    }
+
+    .timeline-icon {
+        position: absolute;
+        left: -50px;
+        margin-bottom: 0;
+    }
+
+    .timeline-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .venues-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .carousel-btn.prev {
+        left: 10px;
+    }
+    
+    .carousel-btn.next {
+        right: 10px;
+    }
+    
+    .anniversary-badge {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .badge-number {
+        font-size: 2.5rem;
+    }
+
+    .skip-to-info-btn {
+        font-size: 1rem;
+        padding: 14px 32px;
+        margin-top: 30px;
+    }
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}

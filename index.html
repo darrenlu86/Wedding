@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>紹民 ❤ 薇珊 婚禮邀請函 | 走過十載春夏，只要有你，到哪都是最美的風景</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loading 畫面 -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="couple-illustration">
+                <img src="src/couple-illustration.svg" alt="新人似顏繪" style="width: 300px; height: auto;">
+            </div>
+            <h2 class="couple-names">紹民 & 薇珊</h2>
+            <p class="loading-text">婚禮邀請函準備中...</p>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p class="progress-percent" id="progress-percent">0%</p>
+        </div>
+    </div>
+
+    <!-- 信封互動畫面 -->
+    <div id="envelope-screen" class="envelope-screen hidden">
+        <h2 class="envelope-title">點擊信封開啟邀請函</h2>
+        <p class="envelope-subtitle">Click to open the invitation</p>
+        <div class="envelope-container" id="envelope">
+            <div class="envelope-back"></div>
+            <div class="envelope-front"></div>
+            <div class="envelope-flap">
+                <img src="src/couple-illustration.svg" alt="新人似顏繪" class="flap-sticker">
+            </div>
+            <div class="envelope-letter">
+                <img src="src/couple-illustration.svg" alt="新人似顏繪">
+            </div>
+        </div>
+    </div>
+
+    <!-- 主內容 -->
+    <div id="main-content" class="main-content hidden">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="anniversary-badge">
+                    <div class="badge-number">10</div>
+                    <div class="badge-text">週年紀念</div>
+                </div>
+                <h1 class="hero-title">SAVE THE DATE</h1>
+                <div class="couple-full-names">
+                    <span class="groom-name">呂紹民</span>
+                    <span class="separator">❤</span>
+                    <span class="bride-name">陳薇珊</span>
+                </div>
+                <p class="hero-subtitle">走過十載春夏，只要有你，到哪都是最美的風景</p>
+                <div class="wedding-dates">
+                    <div class="date-item">
+                        <span class="date-label">台北場</span>
+                        <span class="date-value">2025.03.15（日）午宴</span>
+                    </div>
+                    <div class="date-divider">|</div>
+                    <div class="date-item">
+                        <span class="date-label">高雄場</span>
+                        <span class="date-value">2025.03.21（六）晚宴</span>
+                    </div>
+                </div>
+                <button class="skip-to-info-btn" id="skipToInfo">直接查看婚禮資訊</button>
+            </div>
+            <div class="scroll-indicator">
+                <svg width="30" height="30" viewBox="0 0 30 30">
+                    <path d="M 5 10 L 15 20 L 25 10" stroke="white" stroke-width="2" fill="none"/>
+                </svg>
+            </div>
+        </section>
+
+        <!-- 十年對比照 -->
+        <section class="comparison-section">
+            <div class="container">
+                <h2 class="section-title">從青澀到成熟，身邊依然是你</h2>
+                <p class="section-subtitle">Through seasons of change, you remain my constant.</p>
+
+                <div class="image-comparison-container">
+                    <div class="image-comparison-slider" id="imageComparison">
+                        <div class="image-comparison-before">
+                            <img src="src/10yAgo.jpg" alt="2016 年的我們">
+                            <div class="image-label image-label-before">
+                                <span class="label-year">2016 年</span>
+                                <span class="label-desc">初識時的青澀模樣</span>
+                            </div>
+                        </div>
+                        <div class="image-comparison-after">
+                            <img src="src/10yNow.jpg" alt="2025 年的我們">
+                            <div class="image-label image-label-after">
+                                <span class="label-year">2025 年</span>
+                                <span class="label-desc">攜手走過的每一步</span>
+                            </div>
+                        </div>
+                        <div class="image-comparison-handle" id="comparisonHandle">
+                            <div class="handle-line"></div>
+                            <div class="handle-circle">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comparison-hint">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 18L15 12L9 6M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span>左右滑動查看對比</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 十年回憶輪播 -->
+        <section class="gallery-section">
+            <div class="container">
+                <h2 class="section-title">拾年瞬間：拼湊我們的 3,650 天</h2>
+                <p class="section-subtitle">3,650 Days: A mosaic of our shared moments.</p>
+                <div class="gallery-carousel" id="gallery-carousel">
+                    <div class="carousel-container" id="carousel-container">
+                        <div class="carousel-track" id="carousel-track">
+                            <div class="carousel-slide">
+                                <div class="year-badge">第 1 年</div>
+                                <img src="src/R2016.jpg" alt="2016 年的回憶" class="slide-image">
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="year-badge">第 2 年</div>
+                                <img src="src/R2017.jpg" alt="2017 年的回憶" class="slide-image">
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="year-badge">第 3 年</div>
+                                <img src="src/R2018.jpg" alt="2018 年的回憶" class="slide-image">
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="year-badge">第 4 年</div>
+                                <img src="src/R2019.jpg" alt="2019 年的回憶" class="slide-image">
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="year-badge">第 5 年</div>
+                                <img src="src/R2020.jpg" alt="2020 年的回憶" class="slide-image">
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="year-badge">第 6 年</div>
+                                <img src="src/R2021.jpg" alt="2021 年的回憶" class="slide-image">
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="year-badge">第 7 年</div>
+                                <img src="src/R2022.jpg" alt="2022 年的回憶" class="slide-image">
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="year-badge">第 8 年</div>
+                                <img src="src/R2023.jpg" alt="2023 年的回憶" class="slide-image">
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="year-badge">第 9 年</div>
+                                <img src="src/R2024.jpg" alt="2024 年的回憶" class="slide-image">
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="year-badge">第 10 年</div>
+                                <img src="src/R2025.jpg" alt="2025 年的回憶" class="slide-image">
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="year-badge">現在</div>
+                                <img src="src/Rnow.jpg" alt="現在的我們" class="slide-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-scroll-hint">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18L15 12L9 6M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>左右滑動瀏覽更多</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 我們的故事 -->
+        <section class="story-section">
+            <div class="container">
+                <h2 class="section-title">十年一刻：故事是這樣開始的...</h2>
+                <p class="section-subtitle">How It All Began: Our Decade of Love</p>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">💫</div>
+                        <div class="timeline-content">
+                            <img src="src/Meet.jpg" alt="相遇" class="timeline-image">
+                            <h3>相遇</h3>
+                            <p class="timeline-desc">慈幼社帶我們認識了彼此</p>
+                            <p class="timeline-year">2016</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">💕</div>
+                        <div class="timeline-content">
+                            <img src="src/Date.jpg" alt="交往" class="timeline-image">
+                            <h3>交往</h3>
+                            <p class="timeline-desc">樂讀副的緣分讓我們走得更近一點</p>
+                            <p class="timeline-year">2016.03.27</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">💍</div>
+                        <div class="timeline-content">
+                            <img src="src/Proposal.jpg" alt="求婚" class="timeline-image">
+                            <h3>求婚</h3>
+                            <p class="timeline-desc">9 年紀念日，沖繩虹夕諾雅</p>
+                            <p class="timeline-year">2025.03.10</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">💒</div>
+                        <div class="timeline-content">
+                            <img src="src/Married.jpg" alt="結婚" class="timeline-image">
+                            <h3>結婚</h3>
+                            <p class="timeline-desc">交往10週年，還有未來的每一天</p>
+                            <p class="timeline-year">2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 婚禮資訊 - 雙場地 -->
+        <section class="venues-section">
+            <div class="container">
+                <h2 class="section-title">約定之日：期待與你相見</h2>
+                <p class="section-subtitle">Save the Date: When & Where</p>
+                <p class="venues-note">我們準備了兩場婚宴，歡迎您選擇方便參加的場次</p>
+                
+                <div class="venues-grid">
+                    <!-- 台北場 -->
+                    <div class="venue-card taipei-venue">
+                        <div class="venue-header">
+                            <div class="venue-header-left">
+                                <div class="venue-city">台北場</div>
+                                <div class="venue-header-date">2026.03.15（日）</div>
+                            </div>
+                            <div class="venue-icon">🏛️</div>
+                        </div>
+                        <div class="venue-body">
+                            <div class="venue-info">
+                                <h3>台北彭園會館</h3>
+                                <p class="venue-hall">6F 前衛夢幻廳</p>
+                                <div class="venue-detail">
+                                    <span class="detail-icon">📅</span>
+                                    <span>星期日(3/15) 午宴</span>
+                                </div>
+                                <div class="venue-detail">
+                                    <span class="detail-icon">⏰</span>
+                                    <span>11:30 開放進場｜12:30 開席</span>
+                                </div>
+                                <div class="venue-detail">
+                                    <span class="detail-icon">📍</span>
+                                    <span>110臺北市信義區忠孝東路五段297號6樓</span>
+                                </div>
+                                <div class="venue-detail">
+                                    <span class="detail-icon">🚇</span>
+                                    <span>ATT OUI 婚宴廣場(捷運永春站1號出口)</span>
+                                </div>
+                            </div>
+                            <div class="venue-actions">
+                                <a href="https://line.me/ti/p/%40463wjrgc" target="_blank" class="linebot-btn">
+                                    <span>📱 加入 LINE 填寫出席表單</span>
+                                </a>
+                                <div class="qrcode-container">
+                                    <img src="https://storage.googleapis.com/linein/2510_nearzcny/qrcode.png" alt="台北場 LINE QR Code">
+                                    <p>掃描加入 LINE，以取得最新婚禮資訊</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 高雄場 -->
+                    <div class="venue-card kaohsiung-venue">
+                        <div class="venue-header">
+                            <div class="venue-header-left">
+                                <div class="venue-city">高雄場</div>
+                                <div class="venue-header-date">2026.03.21（六）</div>
+                            </div>
+                            <div class="venue-icon">🏖️</div>
+                        </div>
+                        <div class="venue-body">
+                            <div class="venue-info">
+                                <h3>西子灣沙灘會館</h3>
+                                <p class="venue-hall">海景宴會廳</p>
+                                <div class="venue-detail">
+                                    <span class="detail-icon">📅</span>
+                                    <span>星期六(3/21) 晚宴</span>
+                                </div>
+                                <div class="venue-detail">
+                                    <span class="detail-icon">⏰</span>
+                                    <span>16:30 開放進場｜18:00 開席</span>
+                                </div>
+                                <div class="venue-detail">
+                                    <span class="detail-icon">📍</span>
+                                    <span>804高雄市鼓山區蓮海路51號</span>
+                                </div>
+                                <div class="venue-detail">
+                                    <span class="detail-icon">🚗</span>
+                                    <span>開車或搭乘橘線於西子灣站下車，再轉搭公車(橘1A，橘1C)</span>
+                                </div>
+                            </div>
+                            <div class="venue-actions">
+                                <a href="https://line.me/ti/p/%40732tkjth" target="_blank" class="linebot-btn">
+                                    <span>📱 加入 LINE 填寫出席表單</span>
+                                </a>
+                                <div class="qrcode-container">
+                                    <img src="https://storage.googleapis.com/linein/2510_slejpkye/qrcode.png" alt="高雄場 LINE QR Code">
+                                    <p>掃描加入 LINE，以取得最新婚禮資訊</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-illustration">
+                <img src="src/couple-illustration.svg" alt="新人似顏繪" style="width: 150px; height: auto; opacity: 0.6;">
+            </div>
+            <p class="footer-main">我們期待與您共度這美好時刻</p>
+            <p class="footer-names">紹民 & 薇珊 敬邀</p>
+            <p class="footer-small">不只是下個十年，是未來的每一天</p>
+            <p class="footer-small">Beyond the decade: To every sunrise we’ve yet to see.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
