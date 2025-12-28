@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== 真實圖片預載入 =====
     const imagesToPreload = [
-        'src/couple-illustration.svg',
+        'src/couple-illustration.png',
         'src/10yAgo.jpg',
         'src/10yNow.jpg',
         'src/Date.jpg',
