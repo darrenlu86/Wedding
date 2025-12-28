@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let loadedCount = 0;
     const totalImages = imagesToPreload.length;
+    const startTime = Date.now();
+    const minLoadingTime = 2000; // Loading 畫面至少顯示 2 秒
 
     function updateProgress() {
         const progress = Math.floor((loadedCount / totalImages) * 100);
@@ -40,14 +42,18 @@ document.addEventListener('DOMContentLoaded', function() {
         progressPercent.textContent = progress + '%';
 
         if (loadedCount === totalImages) {
-            // 所有圖片載入完成後延遲顯示信封畫面
+            // 計算已經過的時間
+            const elapsedTime = Date.now() - startTime;
+            const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
+
+            // 確保 Loading 畫面至少顯示 2 秒
             setTimeout(() => {
                 loadingScreen.style.opacity = '0';
                 setTimeout(() => {
                     loadingScreen.style.display = 'none';
                     envelopeScreen.classList.remove('hidden');
                 }, 500);
-            }, 300);
+            }, remainingTime);
         }
     }
 
