@@ -74,23 +74,69 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== 信封點擊事件 =====
     envelope.addEventListener('click', function() {
         envelope.classList.add('opening');
-        
-        // 等待信封動畫完成後顯示主內容
+
+        // 等待信封動畫完成後顯示主內容（延遲 3.2 秒）
         setTimeout(() => {
             envelopeScreen.style.opacity = '0';
             setTimeout(() => {
                 envelopeScreen.style.display = 'none';
                 mainContent.classList.remove('hidden');
                 document.body.style.overflow = 'auto';
-                
+
                 // 啟動滾動觸發動畫
                 initScrollAnimations();
             }, 500);
-        }, 1500);
+        }, 3200);
     });
 
-    // ===== 輪播功能 (改為水平滾動) =====
-    // 輪播現在使用原生水平滾動，無需 JavaScript 控制
+    // ===== 輪播功能 (水平滾動 + 左右按鈕控制) =====
+    const carouselContainer = document.getElementById('carousel-container');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+
+    if (carouselContainer && prevBtn && nextBtn) {
+        const slideWidth = 450 + 30; // 卡片寬度 + gap
+        const minScroll = slideWidth; // 最小滾動位置（2017卡片）
+        let isScrolling = false;
+
+        // 初始滾動到第二張卡片（2017），避免顯示 2016
+        carouselContainer.scrollLeft = minScroll;
+
+        prevBtn.addEventListener('click', () => {
+            const targetScroll = Math.max(minScroll, carouselContainer.scrollLeft - slideWidth);
+            carouselContainer.scrollTo({
+                left: targetScroll,
+                behavior: 'smooth'
+            });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            carouselContainer.scrollBy({
+                left: slideWidth,
+                behavior: 'smooth'
+            });
+        });
+
+        // 防止向左滾動超過 2017（第二張卡片）- 包括手動拖曳
+        let scrollTimeout;
+        carouselContainer.addEventListener('scroll', () => {
+            if (isScrolling) return;
+
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                if (carouselContainer.scrollLeft < minScroll) {
+                    isScrolling = true;
+                    carouselContainer.scrollTo({
+                        left: minScroll,
+                        behavior: 'smooth'
+                    });
+                    setTimeout(() => {
+                        isScrolling = false;
+                    }, 300);
+                }
+            }, 50);
+        });
+    }
 
     // ===== 平滑滾動到下一個區塊 =====
     const scrollIndicator = document.querySelector('.scroll-indicator');
@@ -193,18 +239,44 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ===== 視差滾動效果 =====
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const heroSection = document.querySelector('.hero-section');
-        
-        if (heroSection && scrolled < window.innerHeight) {
-            heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
-    });
+    // ===== 視差滾動效果已移除 - Hero 背景不隨滾動移動 =====
 
     // 防止在載入和信封畫面時滾動
     document.body.style.overflow = 'hidden';
+
+    // ===== Hero Page 分階段顯示文字 =====
+    let heroScrollUnlocked = false;
+    let isShowingDetails = false;
+    let originalScrollPosition = 0;
+
+    window.addEventListener('scroll', function() {
+        const heroDetails = document.querySelector('.hero-details');
+        const scrolled = window.pageYOffset;
+
+        // 當開始滾動時，鎖定位置並顯示細節
+        if (scrolled > 50 && !heroScrollUnlocked && !isShowingDetails) {
+            isShowingDetails = true;
+            originalScrollPosition = scrolled;
+
+            // 立即顯示細節
+            if (heroDetails) {
+                heroDetails.classList.add('visible');
+            }
+
+            // 鎖定滾動位置 1 秒
+            const lockScroll = function(e) {
+                window.scrollTo(0, originalScrollPosition);
+            };
+
+            window.addEventListener('scroll', lockScroll);
+
+            // 1 秒後解鎖
+            setTimeout(() => {
+                window.removeEventListener('scroll', lockScroll);
+                heroScrollUnlocked = true;
+            }, 1000);
+        }
+    });
 
     // ===== Image Comparison Slider =====
     const imageComparison = document.getElementById('imageComparison');

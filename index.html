@@ -74,29 +74,32 @@
         <section class="hero-section">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <div class="anniversary-badge">
-                    <div class="badge-number">10</div>
-                    <div class="badge-text">週年紀念</div>
-                </div>
-                <h1 class="hero-title">SAVE THE DATE</h1>
-                <div class="couple-full-names">
-                    <span class="groom-name">呂紹民</span>
-                    <span class="separator">❤</span>
-                    <span class="bride-name">陳薇珊</span>
-                </div>
-                <p class="hero-subtitle">走過十載春夏，只要有你，到哪都是最美的風景</p>
-                <div class="wedding-dates">
-                    <div class="date-item">
-                        <span class="date-label">台北場</span>
-                        <span class="date-value">2025.03.15（日）午宴</span>
+                <p class="hero-subtitle hero-subtitle-initial">走過十載春夏，只要有你，到哪都是最美的風景。誠摯邀請您參加我們的婚禮</p>
+
+                <div class="hero-details">
+                    <div class="anniversary-badge">
+                        <div class="badge-number">10</div>
+                        <div class="badge-text">週年紀念</div>
                     </div>
-                    <div class="date-divider">|</div>
-                    <div class="date-item">
-                        <span class="date-label">高雄場</span>
-                        <span class="date-value">2025.03.21（六）晚宴</span>
+                    <h1 class="hero-title">SAVE THE DATE</h1>
+                    <div class="couple-full-names">
+                        <span class="groom-name">呂紹民</span>
+                        <span class="separator">❤</span>
+                        <span class="bride-name">陳薇珊</span>
                     </div>
+                    <div class="wedding-dates">
+                        <div class="date-item">
+                            <span class="date-label">台北場</span>
+                            <span class="date-value">2026.03.15（日）午宴</span>
+                        </div>
+                        <div class="date-divider">|</div>
+                        <div class="date-item">
+                            <span class="date-label">高雄場</span>
+                            <span class="date-value">2026.03.21（六）晚宴</span>
+                        </div>
+                    </div>
+                    <button class="skip-to-info-btn" id="skipToInfo">直接查看婚禮資訊</button>
                 </div>
-                <button class="skip-to-info-btn" id="skipToInfo">直接查看婚禮資訊</button>
             </div>
             <div class="scroll-indicator">
                 <svg width="30" height="30" viewBox="0 0 30 30">
@@ -153,51 +156,61 @@
                 <h2 class="section-title">拾年瞬間：拼湊我們的 3,650 天</h2>
                 <p class="section-subtitle">3,650 Days: A mosaic of our shared moments.</p>
                 <div class="gallery-carousel" id="gallery-carousel">
+                    <button class="carousel-btn carousel-prev" id="carousel-prev" aria-label="上一張">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button class="carousel-btn carousel-next" id="carousel-next" aria-label="下一張">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
                     <div class="carousel-container" id="carousel-container">
                         <div class="carousel-track" id="carousel-track">
                             <div class="carousel-slide">
-                                <div class="year-badge">第 1 年</div>
-                                <img src="src/R2016.jpg" alt="2016 年的回憶" class="slide-image">
+                                <div class="year-badge">2016</div>
+                                <img src="src/R2016.jpg" alt="2016" class="slide-image">
                             </div>
                             <div class="carousel-slide">
-                                <div class="year-badge">第 2 年</div>
-                                <img src="src/R2017.jpg" alt="2017 年的回憶" class="slide-image">
+                                <div class="year-badge">2017</div>
+                                <img src="src/R2017.jpg" alt="2017" class="slide-image">
                             </div>
                             <div class="carousel-slide">
-                                <div class="year-badge">第 3 年</div>
-                                <img src="src/R2018.jpg" alt="2018 年的回憶" class="slide-image">
+                                <div class="year-badge">2018</div>
+                                <img src="src/R2018.jpg" alt="2018" class="slide-image">
                             </div>
                             <div class="carousel-slide">
-                                <div class="year-badge">第 4 年</div>
-                                <img src="src/R2019.jpg" alt="2019 年的回憶" class="slide-image">
+                                <div class="year-badge">2019</div>
+                                <img src="src/R2019.jpg" alt="2019" class="slide-image">
                             </div>
                             <div class="carousel-slide">
-                                <div class="year-badge">第 5 年</div>
-                                <img src="src/R2020.jpg" alt="2020 年的回憶" class="slide-image">
+                                <div class="year-badge">2020</div>
+                                <img src="src/R2020.jpg" alt="2020" class="slide-image">
                             </div>
                             <div class="carousel-slide">
-                                <div class="year-badge">第 6 年</div>
-                                <img src="src/R2021.jpg" alt="2021 年的回憶" class="slide-image">
+                                <div class="year-badge">2021</div>
+                                <img src="src/R2021.jpg" alt="2021" class="slide-image">
                             </div>
                             <div class="carousel-slide">
-                                <div class="year-badge">第 7 年</div>
-                                <img src="src/R2022.jpg" alt="2022 年的回憶" class="slide-image">
+                                <div class="year-badge">2022</div>
+                                <img src="src/R2022.jpg" alt="2022" class="slide-image">
                             </div>
                             <div class="carousel-slide">
-                                <div class="year-badge">第 8 年</div>
-                                <img src="src/R2023.jpg" alt="2023 年的回憶" class="slide-image">
+                                <div class="year-badge">2023</div>
+                                <img src="src/R2023.jpg" alt="2023" class="slide-image">
                             </div>
                             <div class="carousel-slide">
-                                <div class="year-badge">第 9 年</div>
-                                <img src="src/R2024.jpg" alt="2024 年的回憶" class="slide-image">
+                                <div class="year-badge">2024</div>
+                                <img src="src/R2024.jpg" alt="2024" class="slide-image">
                             </div>
                             <div class="carousel-slide">
-                                <div class="year-badge">第 10 年</div>
-                                <img src="src/R2025.jpg" alt="2025 年的回憶" class="slide-image">
+                                <div class="year-badge">2025</div>
+                                <img src="src/R2025.jpg" alt="2025" class="slide-image">
                             </div>
                             <div class="carousel-slide">
-                                <div class="year-badge">現在</div>
-                                <img src="src/Rnow.jpg" alt="現在的我們" class="slide-image">
+                                <div class="year-badge">Now</div>
+                                <img src="src/Rnow.jpg" alt="Now" class="slide-image">
                             </div>
                         </div>
                     </div>
@@ -269,39 +282,66 @@
                     <div class="venue-card taipei-venue">
                         <div class="venue-header">
                             <div class="venue-header-left">
-                                <div class="venue-city">台北場</div>
+                                <div class="venue-city">台北場（午宴）</div>
                                 <div class="venue-header-date">2026.03.15（日）</div>
                             </div>
-                            <div class="venue-icon">🏛️</div>
                         </div>
                         <div class="venue-body">
                             <div class="venue-info">
                                 <h3>台北彭園會館</h3>
-                                <p class="venue-hall">6F 前衛夢幻廳</p>
+                                <p class="venue-hall">ATT OUI 婚宴廣場</p>
+
+                                <h4 class="info-section-title">婚宴時間</h4>
                                 <div class="venue-detail">
-                                    <span class="detail-icon">📅</span>
-                                    <span>星期日(3/15) 午宴</span>
+                                    <span class="detail-dot"></span>
+                                    <span>2026.03.15（日）</span>
                                 </div>
                                 <div class="venue-detail">
-                                    <span class="detail-icon">⏰</span>
+                                    <span class="detail-dot"></span>
                                     <span>11:30 開放進場｜12:30 開席</span>
                                 </div>
+
+                                <h4 class="info-section-title">詳細地址</h4>
                                 <div class="venue-detail">
-                                    <span class="detail-icon">📍</span>
-                                    <span>110臺北市信義區忠孝東路五段297號6樓</span>
+                                    <span class="detail-dot"></span>
+                                    <span>臺北市信義區忠孝東路五段297號6樓</span>
+                                </div>
+
+                                <h4 class="info-section-title">大眾運輸</h4>
+                                <div class="venue-detail">
+                                    <span class="detail-dot"></span>
+                                    <span>搭乘板南線（藍線）至永春站1號出口</span>
                                 </div>
                                 <div class="venue-detail">
-                                    <span class="detail-icon">🚇</span>
-                                    <span>ATT OUI 婚宴廣場(捷運永春站1號出口)</span>
+                                    <span class="detail-dot"></span>
+                                    <span>出站後向右步行約1-3分鐘即可抵達</span>
+                                </div>
+                                <div class="venue-detail">
+                                    <span class="detail-dot"></span>
+                                    <span>會館入口位於寶雅旁</span>
+                                </div>
+
+                                <h4 class="info-section-title">自行開車</h4>
+                                <div class="venue-detail">
+                                    <span class="detail-dot"></span>
+                                    <span>會館附設停車場：ATT OUI 建築地下停車場</span>
+                                </div>
+                                <div class="venue-detail">
+                                    <span class="detail-dot"></span>
+                                    <span>停車優惠：享有3小時免費停車折抵</span>
+                                </div>
+                                <div class="venue-detail">
+                                    <span class="detail-dot"></span>
+                                    <span>備用停車：愛買、永春停車場</span>
                                 </div>
                             </div>
                             <div class="venue-actions">
                                 <a href="https://line.me/ti/p/%40463wjrgc" target="_blank" class="linebot-btn">
-                                    <span>📱 加入 LINE 填寫出席表單</span>
+                                    <span>加入 LINE 官方帳號，填寫出席表單</span>
                                 </a>
                                 <div class="qrcode-container">
                                     <img src="https://storage.googleapis.com/linein/2510_nearzcny/qrcode.png" alt="台北場 LINE QR Code">
-                                    <p>掃描加入 LINE，以取得最新婚禮資訊</p>
+                                    <p>加入 LINE 官方帳號，取得最新婚禮資訊</p>
                                 </div>
                             </div>
                         </div>
@@ -311,39 +351,66 @@
                     <div class="venue-card kaohsiung-venue">
                         <div class="venue-header">
                             <div class="venue-header-left">
-                                <div class="venue-city">高雄場</div>
+                                <div class="venue-city">高雄場（晚宴）</div>
                                 <div class="venue-header-date">2026.03.21（六）</div>
                             </div>
-                            <div class="venue-icon">🏖️</div>
                         </div>
                         <div class="venue-body">
                             <div class="venue-info">
                                 <h3>西子灣沙灘會館</h3>
-                                <p class="venue-hall">海景宴會廳</p>
+                                <p class="venue-hall">中山大學內，近海水浴場</p>
+
+                                <h4 class="info-section-title">婚宴時間</h4>
                                 <div class="venue-detail">
-                                    <span class="detail-icon">📅</span>
-                                    <span>星期六(3/21) 晚宴</span>
+                                    <span class="detail-dot"></span>
+                                    <span>2026.03.21（六）</span>
                                 </div>
                                 <div class="venue-detail">
-                                    <span class="detail-icon">⏰</span>
+                                    <span class="detail-dot"></span>
                                     <span>16:30 開放進場｜18:00 開席</span>
                                 </div>
+
+                                <h4 class="info-section-title">詳細地址</h4>
                                 <div class="venue-detail">
-                                    <span class="detail-icon">📍</span>
-                                    <span>804高雄市鼓山區蓮海路51號</span>
+                                    <span class="detail-dot"></span>
+                                    <span>高雄市鼓山區蓮海路51號</span>
+                                </div>
+
+                                <h4 class="info-section-title">大眾運輸</h4>
+                                <div class="venue-detail">
+                                    <span class="detail-dot"></span>
+                                    <span>捷運：搭乘橘線至哈瑪星站2號出口</span>
                                 </div>
                                 <div class="venue-detail">
-                                    <span class="detail-icon">🚗</span>
-                                    <span>開車或搭乘橘線於西子灣站下車，再轉搭公車(橘1A，橘1C)</span>
+                                    <span class="detail-dot"></span>
+                                    <span>公車轉乘：轉乘橘1（A/B/C）或99路</span>
+                                </div>
+                                <div class="venue-detail">
+                                    <span class="detail-dot"></span>
+                                    <span>於「中山大學(行政大樓)」站下車，步行約 2 分鐘</span>
+                                </div>
+
+                                <h4 class="info-section-title">自行開車</h4>
+                                <div class="venue-detail">
+                                    <span class="detail-dot"></span>
+                                    <span>車輛可直接駛入中山大學校門</span>
+                                </div>
+                                <div class="venue-detail">
+                                    <span class="detail-dot"></span>
+                                    <span>告知警衛參加婚宴或領取通行券</span>
+                                </div>
+                                <div class="venue-detail">
+                                    <span class="detail-dot"></span>
+                                    <span>會館提供賓客免費停車服務</span>
                                 </div>
                             </div>
                             <div class="venue-actions">
                                 <a href="https://line.me/ti/p/%40732tkjth" target="_blank" class="linebot-btn">
-                                    <span>📱 加入 LINE 填寫出席表單</span>
+                                    <span>加入 LINE 官方帳號，填寫出席表單</span>
                                 </a>
                                 <div class="qrcode-container">
                                     <img src="https://storage.googleapis.com/linein/2510_slejpkye/qrcode.png" alt="高雄場 LINE QR Code">
-                                    <p>掃描加入 LINE，以取得最新婚禮資訊</p>
+                                    <p>加入 LINE 官方帳號，取得最新婚禮資訊</p>
                                 </div>
                             </div>
                         </div>
