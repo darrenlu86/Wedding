@@ -85,6 +85,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // 啟動滾動觸發動畫
                 initScrollAnimations();
+
+                // 1.5 秒後自動顯示 Hero 細節文字（不鎖定滾動）
+                setTimeout(() => {
+                    const heroDetails = document.querySelector('.hero-details');
+                    if (heroDetails) {
+                        heroDetails.classList.add('visible');
+                    }
+                }, 1500);
             }, 500);
         }, 3200);
     });
@@ -243,40 +251,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 防止在載入和信封畫面時滾動
     document.body.style.overflow = 'hidden';
-
-    // ===== Hero Page 分階段顯示文字 =====
-    let heroScrollUnlocked = false;
-    let isShowingDetails = false;
-    let originalScrollPosition = 0;
-
-    window.addEventListener('scroll', function() {
-        const heroDetails = document.querySelector('.hero-details');
-        const scrolled = window.pageYOffset;
-
-        // 當開始滾動時，鎖定位置並顯示細節
-        if (scrolled > 50 && !heroScrollUnlocked && !isShowingDetails) {
-            isShowingDetails = true;
-            originalScrollPosition = scrolled;
-
-            // 立即顯示細節
-            if (heroDetails) {
-                heroDetails.classList.add('visible');
-            }
-
-            // 鎖定滾動位置 1 秒
-            const lockScroll = function(e) {
-                window.scrollTo(0, originalScrollPosition);
-            };
-
-            window.addEventListener('scroll', lockScroll);
-
-            // 1 秒後解鎖
-            setTimeout(() => {
-                window.removeEventListener('scroll', lockScroll);
-                heroScrollUnlocked = true;
-            }, 1000);
-        }
-    });
 
     // ===== Image Comparison Slider =====
     const imageComparison = document.getElementById('imageComparison');
