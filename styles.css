@@ -267,7 +267,7 @@ body {
 }
 
 .envelope-container.opening .envelope-letter {
-    transform: translateY(-120%) scale(1.2);
+    transform: translateY(-80%) scale(1.15);
     z-index: 4;
 }
 
@@ -994,7 +994,6 @@ body {
     letter-spacing: 3px;
     text-align: left;
     flex-shrink: 0;
-    white-space: nowrap;
 }
 
 .calendar-card {
@@ -1042,7 +1041,7 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 0.65rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: transparent;
     font-weight: 400;
     border-radius: 4px;
     transition: all 0.2s ease;
@@ -1450,7 +1449,6 @@ body {
     .venue-city-label {
         font-size: 1.6rem;
         text-align: center;
-        white-space: nowrap;
     }
 
     .calendar-card {
@@ -1474,7 +1472,7 @@ body {
 
     .calendar-day {
         font-size: 0.55rem;
-        color: rgba(255, 255, 255, 0.35);
+        color: transparent;
     }
 
     .calendar-day.highlight::before {
