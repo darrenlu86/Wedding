@@ -1291,13 +1291,10 @@ body {
 
     .hero-section {
         background-attachment: scroll;
-        width: 100vw;
-        max-width: 100%;
-        background-position: 50% 30%;
+        background-position: 45% 30%;
         background-size: cover;
         min-height: 100vh;
         padding: 60px 20px;
-        overflow: auto;
     }
 
     .hero-content {
