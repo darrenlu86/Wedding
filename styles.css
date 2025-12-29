@@ -27,6 +27,10 @@
     --text-light: #8a8a8a;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'jf-openhuninn', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
     overflow-x: hidden;
@@ -1291,10 +1295,12 @@ body {
 
     .hero-section {
         background-attachment: scroll;
-        background-position: 55% 30%;
+        background-position: 45% 30%;
         background-size: cover;
         min-height: 100vh;
         padding: 60px 20px;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
 
     .hero-content {
