@@ -954,8 +954,9 @@ body {
     background: linear-gradient(135deg, var(--secondary-pink), var(--primary-pink));
     color: white;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    gap: 20px;
 }
 
 .venue-header-left {
@@ -979,6 +980,109 @@ body {
 
 .venue-icon {
     font-size: 2.8rem;
+}
+
+/* ===== 月曆小卡樣式 ===== */
+.venue-city-label {
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.calendar-card {
+    background: linear-gradient(135deg, #ffb3d9, #ff99cc);
+    border-radius: 16px;
+    padding: 20px;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
+}
+
+.calendar-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.calendar-year-month {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: white;
+    font-family: 'Arial', sans-serif;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.calendar-weekday {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 8px 0;
+    letter-spacing: 0.5px;
+    font-family: 'Arial', sans-serif;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    color: white;
+    font-weight: 400;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+}
+
+.calendar-day:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.calendar-day.highlight {
+    background: white;
+    color: #ff6b9d;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+}
+
+/* 愛心圖標使用 ::before 偽元素 */
+.calendar-day.highlight::before {
+    content: '❤';
+    position: absolute;
+    top: -8px;
+    right: -2px;
+    font-size: 0.8rem;
+    color: #ff3366;
+    animation: heartbeat 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(255, 51, 102, 0.3));
+}
+
+/* 心跳動畫 */
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    14% {
+        transform: scale(1.3);
+    }
+    28% {
+        transform: scale(1);
+    }
+    42% {
+        transform: scale(1.3);
+    }
+    56% {
+        transform: scale(1);
+    }
 }
 
 .venue-body {
@@ -1329,6 +1433,40 @@ body {
     
     .venues-grid {
         grid-template-columns: 1fr;
+    }
+
+    /* 月曆小卡響應式 */
+    .venue-city-label {
+        font-size: 1.8rem;
+    }
+
+    .calendar-card {
+        max-width: 320px;
+        padding: 16px;
+    }
+
+    .calendar-year-month {
+        font-size: 1rem;
+        letter-spacing: 2px;
+    }
+
+    .calendar-grid {
+        gap: 6px;
+    }
+
+    .calendar-weekday {
+        font-size: 0.65rem;
+        padding: 6px 0;
+    }
+
+    .calendar-day {
+        font-size: 0.85rem;
+    }
+
+    .calendar-day.highlight::before {
+        top: -6px;
+        right: -1px;
+        font-size: 0.7rem;
     }
     
     .carousel-btn.prev {
