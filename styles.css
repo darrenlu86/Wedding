@@ -113,6 +113,9 @@ body {
     align-items: center;
     z-index: 9998;
     animation: fadeIn 0.5s ease;
+    padding: 60px 20px;
+    box-sizing: border-box;
+    overflow: auto;
 }
 
 .envelope-title {
@@ -264,7 +267,7 @@ body {
 }
 
 .envelope-container.opening .envelope-letter {
-    transform: translateY(-120%) scale(1.2);
+    transform: translateY(-80%) scale(1.15);
     z-index: 4;
 }
 
@@ -283,7 +286,8 @@ body {
 .hero-section {
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 80px 20px;
     background: linear-gradient(rgba(255, 173, 210, 0.25), rgba(255, 193, 224, 0.25)),
                 url('src/Hero.jpg');
     background-size: cover;
@@ -293,7 +297,7 @@ body {
     justify-content: center;
     align-items: center;
     color: white;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .hero-overlay {
@@ -954,8 +958,10 @@ body {
     background: linear-gradient(135deg, var(--secondary-pink), var(--primary-pink));
     color: white;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
 .venue-header-left {
@@ -979,6 +985,106 @@ body {
 
 .venue-icon {
     font-size: 2.8rem;
+}
+
+/* ===== 月曆小卡樣式 ===== */
+.venue-city-label {
+    font-size: 2.8rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-align: left;
+    flex-shrink: 0;
+    line-height: 1.4;
+}
+
+.calendar-card {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 12px;
+    width: auto;
+    max-width: 200px;
+    backdrop-filter: blur(10px);
+    flex-shrink: 0;
+}
+
+.calendar-header {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.calendar-year-month {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: white;
+    font-family: 'Arial', sans-serif;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.calendar-weekday {
+    text-align: center;
+    font-size: 0.55rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 4px 0;
+    letter-spacing: 0.3px;
+    font-family: 'Arial', sans-serif;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: white;
+    font-weight: 400;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+}
+
+.calendar-day.highlight {
+    color: transparent;
+    position: relative;
+}
+
+/* 愛心圖標使用 ::before 偽元素 */
+.calendar-day.highlight::before {
+    content: '❤';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    font-size: 1.1rem;
+    color: #ff3366;
+    animation: heartbeat 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(255, 51, 102, 0.3));
+}
+
+/* 心跳動畫 */
+@keyframes heartbeat {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    14% {
+        transform: translate(-50%, -50%) scale(1.3);
+    }
+    28% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    42% {
+        transform: translate(-50%, -50%) scale(1.3);
+    }
+    56% {
+        transform: translate(-50%, -50%) scale(1);
+    }
 }
 
 .venue-body {
@@ -1187,7 +1293,11 @@ body {
         background-attachment: scroll;
         width: 100vw;
         max-width: 100%;
-        background-position: center 30%;
+        background-position: 50% 30%;
+        background-size: cover;
+        min-height: 100vh;
+        padding: 60px 20px;
+        overflow: auto;
     }
 
     .hero-content {
@@ -1195,6 +1305,7 @@ body {
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
+        margin: auto 0;
     }
 
     .hero-subtitle-initial {
@@ -1329,6 +1440,45 @@ body {
     
     .venues-grid {
         grid-template-columns: 1fr;
+    }
+
+    /* 月曆小卡響應式 */
+    .venue-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .venue-city-label {
+        font-size: 1.6rem;
+        text-align: center;
+    }
+
+    .calendar-card {
+        max-width: 170px;
+        padding: 10px;
+    }
+
+    .calendar-year-month {
+        font-size: 0.7rem;
+        letter-spacing: 1.5px;
+    }
+
+    .calendar-grid {
+        gap: 3px;
+    }
+
+    .calendar-weekday {
+        font-size: 0.45rem;
+        padding: 3px 0;
+    }
+
+    .calendar-day {
+        font-size: 0.55rem;
+        color: white;
+    }
+
+    .calendar-day.highlight::before {
+        font-size: 0.95rem;
     }
     
     .carousel-btn.prev {
