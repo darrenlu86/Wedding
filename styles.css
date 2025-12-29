@@ -1292,7 +1292,8 @@ body {
         background-attachment: scroll;
         width: 100vw;
         max-width: 100%;
-        background-position: 60% 30%;
+        background-position: 35% 30%;
+        background-size: auto 100%;
         min-height: 100vh;
         padding: 60px 20px;
         overflow: auto;
