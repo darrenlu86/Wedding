@@ -283,7 +283,8 @@ body {
 .hero-section {
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 80px 20px;
     background: linear-gradient(rgba(255, 173, 210, 0.25), rgba(255, 193, 224, 0.25)),
                 url('src/Hero.jpg');
     background-size: cover;
@@ -293,7 +294,7 @@ body {
     justify-content: center;
     align-items: center;
     color: white;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .hero-overlay {
@@ -954,7 +955,8 @@ body {
     background: linear-gradient(135deg, var(--secondary-pink), var(--primary-pink));
     color: white;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     gap: 20px;
 }
@@ -987,27 +989,29 @@ body {
     font-size: 2.2rem;
     font-weight: 400;
     letter-spacing: 3px;
-    text-align: center;
+    text-align: left;
+    flex-shrink: 0;
 }
 
 .calendar-card {
-    background: linear-gradient(135deg, #ffb3d9, #ff99cc);
-    border-radius: 16px;
-    padding: 20px;
-    width: 100%;
-    max-width: 350px;
-    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 12px;
+    width: auto;
+    max-width: 200px;
+    backdrop-filter: blur(10px);
+    flex-shrink: 0;
 }
 
 .calendar-header {
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 .calendar-year-month {
-    font-size: 1.2rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     color: white;
     font-family: 'Arial', sans-serif;
 }
@@ -1015,16 +1019,16 @@ body {
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 8px;
+    gap: 4px;
 }
 
 .calendar-weekday {
     text-align: center;
-    font-size: 0.75rem;
+    font-size: 0.55rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
-    padding: 8px 0;
-    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 4px 0;
+    letter-spacing: 0.3px;
     font-family: 'Arial', sans-serif;
 }
 
@@ -1033,34 +1037,28 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.95rem;
-    color: white;
+    font-size: 0.7rem;
+    color: transparent;
     font-weight: 400;
-    border-radius: 8px;
+    border-radius: 4px;
     transition: all 0.2s ease;
     font-family: 'Arial', sans-serif;
     position: relative;
 }
 
-.calendar-day:hover {
-    background: rgba(255, 255, 255, 0.15);
-}
-
 .calendar-day.highlight {
-    background: white;
-    color: #ff6b9d;
-    font-weight: 700;
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
-    border-radius: 50%;
+    color: transparent;
+    position: relative;
 }
 
 /* 愛心圖標使用 ::before 偽元素 */
 .calendar-day.highlight::before {
     content: '❤';
     position: absolute;
-    top: -8px;
-    right: -2px;
-    font-size: 0.8rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
     color: #ff3366;
     animation: heartbeat 1.5s ease-in-out infinite;
     filter: drop-shadow(0 2px 4px rgba(255, 51, 102, 0.3));
@@ -1292,6 +1290,9 @@ body {
         width: 100vw;
         max-width: 100%;
         background-position: center 30%;
+        min-height: 100vh;
+        padding: 60px 20px;
+        overflow: auto;
     }
 
     .hero-content {
@@ -1299,6 +1300,7 @@ body {
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
+        margin: auto 0;
     }
 
     .hero-subtitle-initial {
@@ -1436,37 +1438,41 @@ body {
     }
 
     /* 月曆小卡響應式 */
+    .venue-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
     .venue-city-label {
         font-size: 1.8rem;
+        text-align: center;
     }
 
     .calendar-card {
-        max-width: 320px;
-        padding: 16px;
+        max-width: 180px;
+        padding: 10px;
     }
 
     .calendar-year-month {
-        font-size: 1rem;
-        letter-spacing: 2px;
+        font-size: 0.75rem;
+        letter-spacing: 1.5px;
     }
 
     .calendar-grid {
-        gap: 6px;
+        gap: 3px;
     }
 
     .calendar-weekday {
-        font-size: 0.65rem;
-        padding: 6px 0;
+        font-size: 0.5rem;
+        padding: 3px 0;
     }
 
     .calendar-day {
-        font-size: 0.85rem;
+        font-size: 0.6rem;
     }
 
     .calendar-day.highlight::before {
-        top: -6px;
-        right: -1px;
-        font-size: 0.7rem;
+        font-size: 1rem;
     }
     
     .carousel-btn.prev {
