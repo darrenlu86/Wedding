@@ -989,11 +989,12 @@ body {
 
 /* ===== 月曆小卡樣式 ===== */
 .venue-city-label {
-    font-size: 2.2rem;
+    font-size: 2.8rem;
     font-weight: 400;
     letter-spacing: 3px;
     text-align: left;
     flex-shrink: 0;
+    line-height: 1.4;
 }
 
 .calendar-card {
@@ -1292,8 +1293,8 @@ body {
         background-attachment: scroll;
         width: 100vw;
         max-width: 100%;
-        background-position: 35% 30%;
-        background-size: auto 100%;
+        background-position: 50% 30%;
+        background-size: cover;
         min-height: 100vh;
         padding: 60px 20px;
         overflow: auto;
