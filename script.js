@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 envelopeScreen.style.display = 'none';
                 mainContent.classList.remove('hidden');
-                document.body.style.overflow = 'auto';
+                document.body.style.overflowY = 'auto';
 
                 // 啟動滾動觸發動畫
                 initScrollAnimations();
