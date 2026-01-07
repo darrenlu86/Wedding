@@ -345,3 +345,41 @@ function preloadImages(imageUrls) {
 //     'path/to/image1.jpg',
 //     'path/to/image2.jpg',
 // ]);
+
+// ===== 電子喜帖浮動視窗功能 =====
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('invitationModal');
+    const invitationBtns = document.querySelectorAll('.view-invitation-btn');
+    const closeBtn = modal.querySelector('.modal-close');
+    const modalOverlay = modal.querySelector('.modal-overlay');
+
+    // 打開浮動視窗
+    function openModal() {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // 防止背景滾動
+    }
+
+    // 關閉浮動視窗
+    function closeModal() {
+        modal.classList.add('hidden');
+        document.body.style.overflowY = 'auto'; // 恢復滾動
+    }
+
+    // 為所有按鈕添加點擊事件
+    invitationBtns.forEach(btn => {
+        btn.addEventListener('click', openModal);
+    });
+
+    // 關閉按鈕點擊事件
+    closeBtn.addEventListener('click', closeModal);
+
+    // 點擊遮罩層關閉
+    modalOverlay.addEventListener('click', closeModal);
+
+    // ESC 鍵關閉
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+            closeModal();
+        }
+    });
+});

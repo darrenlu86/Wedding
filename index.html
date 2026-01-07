@@ -330,6 +330,15 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- 電子喜帖按鈕 -->
+                        <div class="invitation-button-container">
+                            <button class="view-invitation-btn" data-venue="taipei">
+                                <span class="btn-icon">💌</span>
+                                <span class="btn-text">查看電子喜帖</span>
+                            </button>
+                        </div>
+
                         <div class="venue-body">
                             <div class="venue-info">
                                 <h3>台北彭園會館</h3>
@@ -443,6 +452,15 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- 電子喜帖按鈕 -->
+                        <div class="invitation-button-container">
+                            <button class="view-invitation-btn" data-venue="kaohsiung">
+                                <span class="btn-icon">💌</span>
+                                <span class="btn-text">查看電子喜帖</span>
+                            </button>
+                        </div>
+
                         <div class="venue-body">
                             <div class="venue-info">
                                 <h3>西子灣沙灘會館</h3>
@@ -517,6 +535,20 @@
             <p class="footer-small">不只是下個十年，是未來的每一天</p>
             <p class="footer-small">Beyond the decade: To every sunrise we’ve yet to see.</p>
         </footer>
+    </div>
+
+    <!-- 電子喜帖浮動視窗 -->
+    <div id="invitationModal" class="invitation-modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="關閉喜帖">✕</button>
+            <div class="modal-body">
+                <div class="invitation-images">
+                    <img src="src/invitation-card-1.jpg" alt="婚禮喜帖第一頁" class="invitation-image">
+                    <img src="src/invitation-card-2.jpg" alt="婚禮喜帖第二頁" class="invitation-image">
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
