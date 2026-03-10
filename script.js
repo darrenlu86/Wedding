@@ -353,8 +353,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = modal.querySelector('.modal-close');
     const modalOverlay = modal.querySelector('.modal-overlay');
 
+    const invitationImage = document.getElementById('invitationImage');
+    const venueImages = {
+        taipei: 'src/invitation-taipei.jpg',
+        kaohsiung: 'src/invitation-kaohsiung.jpg'
+    };
+
     // 打開浮動視窗
-    function openModal() {
+    function openModal(venue) {
+        invitationImage.src = venueImages[venue] || venueImages.taipei;
+        invitationImage.alt = venue === 'kaohsiung' ? '高雄場電子喜帖' : '台北場電子喜帖';
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden'; // 防止背景滾動
     }
@@ -367,7 +375,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 為所有按鈕添加點擊事件
     invitationBtns.forEach(btn => {
-        btn.addEventListener('click', openModal);
+        btn.addEventListener('click', function() {
+            const venue = this.getAttribute('data-venue');
+            openModal(venue);
+        });
     });
 
     // 關閉按鈕點擊事件
