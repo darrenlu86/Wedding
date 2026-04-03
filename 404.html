@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>找不到頁面 | 紹民 ❤ 薇珊 婚禮邀請函</title>
+
+    <!-- Font Preload -->
+    <link rel="preload" href="src/fonts/jf-openhuninn-2.1.ttf" as="font" type="font/ttf" crossorigin>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+
+    <style>
+        @font-face {
+            font-family: 'jf-openhuninn';
+            src: url('src/fonts/jf-openhuninn-2.1.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #ffc1e0;
+            --secondary-pink: #ffadd2;
+            --light-pink: #fff5f9;
+            --deep-pink: #ff85b3;
+            --accent-pink: #ff6b9d;
+            --soft-pink: #ffe4f0;
+            --gold: #d4a574;
+            --text-dark: #2d2d2d;
+            --text-gray: #6b6b6b;
+        }
+
+        body {
+            font-family: 'jf-openhuninn', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            background: linear-gradient(135deg, #fff5f9 0%, #ffe4f0 50%, #ffd9ea 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px 24px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .illustration {
+            margin-bottom: 24px;
+        }
+
+        .illustration img {
+            width: 220px;
+            height: auto;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .error-code {
+            font-size: 5rem;
+            color: var(--primary-pink);
+            letter-spacing: 8px;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .error-message {
+            font-size: 1.5rem;
+            color: var(--deep-pink);
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        .error-description {
+            font-size: 1rem;
+            color: var(--text-gray);
+            margin-bottom: 36px;
+            line-height: 1.8;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, var(--deep-pink), var(--accent-pink));
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255, 133, 179, 0.3);
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 133, 179, 0.45);
+        }
+
+        .back-button:active {
+            transform: translateY(0);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="illustration">
+            <img src="src/couple-illustration.png" alt="新人似顏繪">
+        </div>
+        <div class="error-code">404</div>
+        <h1 class="error-message">找不到頁面</h1>
+        <p class="error-description">這條路似乎走散了，讓我們帶你回到邀請函吧</p>
+        <a href="/" class="back-button">返回首頁</a>
+    </div>
+</body>
+</html>
