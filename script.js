@@ -9,32 +9,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const envelope = document.getElementById('envelope');
 
     // ===== 真實圖片預載入 =====
+    // 只預載入 Loading/信封畫面本身用得到的小圖，其餘照片交給
+    // 頁面上既有的 <img loading="lazy"> 依捲動位置自然載入，
+    // 避免一次把整組相簿全部搶在最前面下載。
     const imagesToPreload = [
-        'src/couple-illustration.png',
-        'src/10yAgo.jpg',
-        'src/10yNow.jpg',
-        'src/Date.jpg',
-        'src/Hero.jpg',
-        'src/Married.jpg',
-        'src/Meet.jpg',
-        'src/Proposal.jpg',
-        'src/R2016.jpg',
-        'src/R2017.jpg',
-        'src/R2018.jpg',
-        'src/R2019.jpg',
-        'src/R2020.jpg',
-        'src/R2021.jpg',
-        'src/R2022.jpg',
-        'src/R2023.jpg',
-        'src/R2024.jpg',
-        'src/R2025.jpg',
-        'src/Rnow.jpg'
+        'src/couple-illustration.png'
     ];
 
     let loadedCount = 0;
     const totalImages = imagesToPreload.length;
     const startTime = Date.now();
     const minLoadingTime = 2000; // Loading 畫面至少顯示 2 秒
+    const hardTimeout = 8000; // 保底逾時：無論圖片是否載完，8 秒後強制隱藏 Loading 畫面
+    let loadingFinished = false;
+
+    function finishLoading() {
+        if (loadingFinished) return;
+        loadingFinished = true;
+
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+            envelopeScreen.classList.remove('hidden');
+        }, 500);
+    }
 
     function updateProgress() {
         const progress = Math.floor((loadedCount / totalImages) * 100);
@@ -47,17 +45,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
 
             // 確保 Loading 畫面至少顯示 2 秒
-            setTimeout(() => {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                    envelopeScreen.classList.remove('hidden');
-                }, 500);
-            }, remainingTime);
+            setTimeout(finishLoading, remainingTime);
         }
     }
 
-    // 預載入所有圖片
+    // 保底逾時：就算圖片請求卡住（既不 load 也不 error），使用者也不會被鎖在 Loading 畫面
+    setTimeout(finishLoading, hardTimeout);
+
+    // 預載入 Loading 畫面用的圖片
     imagesToPreload.forEach(src => {
         const img = new Image();
         img.onload = () => {
